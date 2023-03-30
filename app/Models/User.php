@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Cog\Contracts\Ban\Bannable as BannableInterface;
+use Cog\Laravel\Ban\Traits\Bannable;
 
 class User extends Authenticatable
 {
@@ -17,6 +20,8 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
+    use Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +32,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'club_id',
     ];
 
     /**
@@ -58,4 +64,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function club()
+    {
+        return $this->hasOne(Club::class);
+    }
 }
