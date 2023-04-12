@@ -33,6 +33,7 @@ class User extends Authenticatable
         'email',
         'password',
         'club_id',
+        'google_id',
     ];
 
     /**
@@ -63,10 +64,36 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'nombreClub',
     ];
 
+    //RELACIONES
     public function club()
     {
         return $this->hasOne(Club::class);
+    }
+
+    public function surveyUsers()
+    {
+        return $this->hasMany(SurveyUser::class);
+    }
+
+    public function commentUsers()
+    {
+        return $this->hasMany(CommentUser::class);
+    }
+
+    public function gameUsers()
+    {
+        return $this->hasMany(GameUser::class);
+    }
+
+    //APPENDS
+
+    public function nombreClub()
+    {
+        $club = Club::where('id', $this->club_id)->first();
+
+        return $club;
     }
 }

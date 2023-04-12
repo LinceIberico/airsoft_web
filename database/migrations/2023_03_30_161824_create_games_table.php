@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_category_id')->constrained('game_category');
+            $table->foreignId('game_category_id')->constrained('game_categories');
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('rules')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('end_game');
             $table->float('price');
             $table->string('place');
+            $table->string('club_photo', 2048)->nullable();
             $table->timestamps();
         });
     }

@@ -10,11 +10,25 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+        
+    <style>
+        .sort-asc::after {
+            content: " ▲";
+            color: green;
+            font-size: 1rem;
+        }
+        .sort-desc::after {
+            content: " ▼";
+            color: green;
+            font-size: 1rem;
+        }
+
+    </style>
+
         @livewireStyles
     </head>
     <body class="font-sans antialiased">

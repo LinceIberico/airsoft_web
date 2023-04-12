@@ -26,4 +26,14 @@ return new class extends Migration
     {
         Schema::dropIfExists('ask_surveys');
     }
+
+    public function ask()
+    {
+        return $this->belongsToMany(Ask::class);
+    }
+
+    public function survey()
+    {
+        return $this->belongsToMany(Survey::class);
+    }
 };

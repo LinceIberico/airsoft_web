@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('survey_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('survey_id')->constrained('survey');
+            $table->foreignId('survey_id')->constrained('surveys');
             $table->timestamps();
         });
     }
