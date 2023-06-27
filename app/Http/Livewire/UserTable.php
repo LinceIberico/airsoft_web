@@ -42,10 +42,10 @@ class UserTable extends Component
     public $perPage = "5";
     public $sortField = 'id';
     public $sortAsc = true;
+    public $showModal = 'hidden';
 
     public function render()
     {
-        // $users = User::paginate($perPage);
         $users = User::where('name', 'like', "%{$this->search}%")
             ->orWhere('email', 'like', '%'.$this->search.'%')
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
@@ -76,6 +76,12 @@ class UserTable extends Component
     {
         $this->search = "";
         $this->perPage = "5";
+    }
+
+    public function showModal(User $user)
+    {
+        // dd($user);
+        $this->emit('showModal',$user);
     }
 }
 

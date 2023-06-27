@@ -90,7 +90,7 @@ class User extends Authenticatable
 
     //APPENDS
 
-    public function nombreClub()
+    public function getNombreClubAttribute()
     {
         $club = Club::where('id', $this->club_id)->first();
 

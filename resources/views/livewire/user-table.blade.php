@@ -46,17 +46,17 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $user->id }}</td>
-                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td class="px-6 py-4 whitespace-nowrap @if ($user->banned_at )bg-red-200 @endif">{{ $user->id }}</td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white @if ($user->banned_at )bg-red-200 @endif">
                                         <img class="w-10 h-10 rounded-full" src="{{$user->profile_photo_url}}" alt="foto_usuario">
                                         <div class="pl-3">
                                             <div class="text-base font-semibold">{{$user->name}}</div>
                                         </div>  
                                     </th>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $user->nombreClub()->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="" class="text-indigo-600 hover:text-indigo-900">View</a>
+                                    <td class="px-6 py-4 whitespace-nowrap @if ($user->banned_at )bg-red-200 @endif">{{ $user->email }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap @if ($user->banned_at )bg-red-200 @endif">{{ $user->nombreClub->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap @if ($user->banned_at )bg-red-200 @endif">
+                                        <a wire:click="showModal({{ $user->id }})" href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900">View</a>
                                         <a href="" class="ml-4 text-indigo-600 hover:text-indigo-900">Edit</a>
                                     </td>
                                 </tr>
@@ -79,4 +79,10 @@
         {{ $users->links() }}
     </div>
 </div>
+@push('modals')
 
+  
+  
+@endpush
+   
+  

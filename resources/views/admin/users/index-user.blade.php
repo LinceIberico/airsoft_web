@@ -14,4 +14,7 @@
             </div>
         </div>
     </div>
+    @push('modals')
+        @livewire('view-modal-user')
+    @endpush
 </x-app-layout>
